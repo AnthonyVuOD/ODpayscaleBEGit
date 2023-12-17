@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.*;
 
+import java.awt.geom.Arc2D;
+
 
 @Entity
 @Table(name="w2_jobs")
@@ -16,59 +18,49 @@ import lombok.*;
 @AllArgsConstructor
 public class W2Job extends Job{
     @Column(name = "annual_salary_and_bonus")
-    private int annualSalaryAndBonus;
+    private Double annualSalaryAndBonus;
     @Column(name = "weekly_hours")
-    private float weeklyHours;
+    private Double weeklyHours;
     @Column(name = "patients_per_week")
     private int patientsPerWeek;
     @Column(name = "comp_per_patient")
-    private float compPerPatient;
+    private Double compPerPatient;
     @Column(name = "comp_per_hour")
-    private float compPerHour;
+    private Double compPerHour;
     @Column(name = "normalized_annual_comp")
-    private int normalizedAnnualComp;
+    private Double normalizedAnnualComp;
 
-    public W2Job(   String dateCreated,
-                    Optometrist associatedOptometristId,
+    public W2Job(
+                    Optometrist optometrist,
                     Integer year,
                     String state,
                     String city,
-                    String companyName,
                     String practiceMode,
                     String setting,
-                    Boolean weekends,
                     Integer paidDaysOff,
                     Integer healthInsuranceValue,
                     Integer otherBenefitsValue,
                     String comments,
-                    Float totalBenefitsValue,
-                    Integer yearsOfExperience,
-                    Integer annualSalaryAndBonus,
-                    Float weeklyHours,
-                    Integer patientsPerWeek,
-                    Float compPerPatient,
-                    Float compPerHour,
-                    Integer normalizedAnnualComp){
-        super(  dateCreated,
-                associatedOptometristId,
+                    Double annualSalaryAndBonus,
+                    Double weeklyHours,
+                    Integer patientsPerWeek){
+        super(
+                optometrist,
                 year,
                 state,
                 city,
-                companyName,
                 practiceMode,
                 setting,
-                weekends,
                 paidDaysOff,
                 healthInsuranceValue,
                 otherBenefitsValue,
-                comments,
-                totalBenefitsValue,
-                yearsOfExperience);
+                comments);
         this.annualSalaryAndBonus=annualSalaryAndBonus;
         this.weeklyHours=weeklyHours;
         this.patientsPerWeek=patientsPerWeek;
-        this.compPerPatient=compPerPatient;
-        this.compPerHour=compPerHour;
-        this.normalizedAnnualComp=normalizedAnnualComp;
+
+        this.normalizedAnnualComp= (annualSalaryAndBonus +healthInsuranceValue+otherBenefitsValue);
+        this.compPerPatient = normalizedAnnualComp/(patientsPerWeek*52);
+        this.compPerHour = normalizedAnnualComp/(weeklyHours*52);
     }
 }

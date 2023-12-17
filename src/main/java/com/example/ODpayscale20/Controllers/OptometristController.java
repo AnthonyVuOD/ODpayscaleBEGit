@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/v1/optometrists")
@@ -32,21 +33,17 @@ public class OptometristController {
     }
 
     @PostMapping("/createoptometrist")
-    public ResponseEntity<Optometrist> postCreateOptometrist(
-                                                           String odId,
-                                                           Integer yearGraduated,
-                                                           boolean residency,
-                                                           Integer initialDebt,
-                                                           String gender,
-                                                           String race,
-                                                           ArrayList<Job> jobs){
+    public ResponseEntity<Optometrist> postCreateOptometrist( @RequestBody Optometrist optometrist){
+        Integer yearGraduated = optometrist.getYearGraduated();
+        String residency = optometrist.getResidency();
+        Integer initialDebt = optometrist.getInitialDebt();
+        String gender = optometrist.getGender();
+        String race = optometrist.getRace();
 
-        return new ResponseEntity<Optometrist>(optometristService.createOptometrist(odId,
-                                                                                    yearGraduated,
+        return new ResponseEntity<Optometrist>(optometristService.createOptometrist(yearGraduated,
                                                                                     residency,
                                                                                     initialDebt,
                                                                                     gender,
-                                                                                    race,
-                                                                                    jobs    ), HttpStatus.CREATED);
+                                                                                    race), HttpStatus.CREATED);
     }
 }

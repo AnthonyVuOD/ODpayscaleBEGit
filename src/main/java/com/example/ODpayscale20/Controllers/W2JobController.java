@@ -4,6 +4,7 @@ package com.example.ODpayscale20.Controllers;
 import com.example.ODpayscale20.Entities.Optometrist;
 import com.example.ODpayscale20.Entities.W2Job;
 import com.example.ODpayscale20.Services.W2JobService;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,48 +30,34 @@ public class W2JobController {
     }
 
     @PostMapping("/createw2job")
-    public ResponseEntity<W2Job> postCreateW2Job(String dateCreated,
-                                                 Optometrist associatedOptometristId,
-                                                 Integer year,
-                                                 String state,
-                                                 String city,
-                                                 String companyName,
-                                                 String practiceMode,
-                                                 String setting,
-                                                 Boolean weekends,
-                                                 Integer paidDaysOff,
-                                                 Integer healthInsuranceValue,
-                                                 Integer otherBenefitsValue,
-                                                 String comments,
-                                                 Float totalBenefitsValue,
-                                                 Integer yearsOfExperience,
-                                                 Integer annualSalaryAndBonus,
-                                                 Float weeklyHours,
-                                                 Integer patientsPerWeek,
-                                                 Float compPerPatient,
-                                                 Float compPerHour,
-                                                 Integer normalizedAnnualComp){
+    public ResponseEntity<W2Job> postCreateW2Job( @RequestBody W2Job w2job){
+        Optometrist optometrist = w2job.getOptometrist();
+        Integer year = w2job.getYear();
+        String state = w2job.getState();
+        String city = w2job.getCity();
+        String practiceMode = w2job.getPracticeMode();
+        String setting = w2job.getSetting();
+        Integer paidDaysOff = w2job.getPaidDaysOff();
+        Integer healthInsuranceValue = w2job.getHealthInsuranceValue();
+        Integer otherBenefitsValue = w2job.getOtherBenefitsValue();
+        String comments= w2job.getComments();
+        Double annualSalaryAndBonus = w2job.getAnnualSalaryAndBonus();
+        Double weeklyHours = w2job.getWeeklyHours();
+        Integer patientsPerWeek = w2job.getPatientsPerWeek();
 
-        return new ResponseEntity<W2Job>(w2JobService.createW2Job(  dateCreated,
-                                                                    associatedOptometristId,
+        return new ResponseEntity<W2Job>(w2JobService.createW2Job(
+                                                                    optometrist,
                                                                     year,
                                                                     state,
                                                                     city,
-                                                                    companyName,
                                                                     practiceMode,
                                                                     setting,
-                                                                    weekends,
                                                                     paidDaysOff,
                                                                     healthInsuranceValue,
                                                                     otherBenefitsValue,
                                                                     comments,
-                                                                    totalBenefitsValue,
-                                                                    yearsOfExperience,
                                                                     annualSalaryAndBonus,
                                                                     weeklyHours,
-                                                                    patientsPerWeek,
-                                                                    compPerPatient,
-                                                                    compPerHour,
-                                                                    normalizedAnnualComp),HttpStatus.OK);
+                                                                    patientsPerWeek),HttpStatus.OK);
     }
 }

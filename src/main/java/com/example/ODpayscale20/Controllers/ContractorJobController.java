@@ -4,6 +4,7 @@ package com.example.ODpayscale20.Controllers;
 import com.example.ODpayscale20.Entities.ContractorJob;
 import com.example.ODpayscale20.Entities.Optometrist;
 import com.example.ODpayscale20.Services.ContractorJobService;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,50 +31,34 @@ public class ContractorJobController {
     }
 
     @PostMapping("/createcontractorjob")
-    public ResponseEntity<ContractorJob> postCreateContractorJob(String dateCreated,
-                                                                 Optometrist associatedOptometristId,
-                                                                 Integer year,
-                                                                 String state,
-                                                                 String city,
-                                                                 String companyName,
-                                                                 String practiceMode,
-                                                                 String setting,
-                                                                 Boolean weekends,
-                                                                 Integer paidDaysOff,
-                                                                 Integer healthInsuranceValue,
-                                                                 Integer otherBenefitsValue,
-                                                                 String comments,
-                                                                 Float totalBenefitsValue,
-                                                                 Integer yearsOfExperience,
-                                                                 Integer dailyRateAndBonus,
-                                                                 Float dailyHours,
-                                                                 Integer patientsPerDay,
-                                                                 Float compPerPatient,
-                                                                 Float compPerHour,
-                                                                 Integer normalizedAnnualComp){
+    public ResponseEntity<ContractorJob> postCreateContractorJob(  @RequestBody ContractorJob contractorJob){
+        Optometrist optometrist = contractorJob.getOptometrist();
+        Integer year = contractorJob.getYear();
+        String state = contractorJob.getState();
+        String city = contractorJob.getCity();
+        String practiceMode = contractorJob.getPracticeMode();
+        String setting = contractorJob.getSetting();
+        Integer paidDaysOff = contractorJob.getPaidDaysOff();
+        Integer healthInsuranceValue = contractorJob.getHealthInsuranceValue();
+        Integer otherBenefitsValue = contractorJob.getOtherBenefitsValue();
+        String comments = contractorJob.getComments();
+        Double dailyRateAndBonus = contractorJob.getDailyRateAndBonus();
+        Double dailyHours = contractorJob.getDailyHours();
+        Integer patientsPerDay =contractorJob.getPatientsPerDay();
 
-        return new ResponseEntity<ContractorJob>(contractorJobService.createContractorJob(  dateCreated,
-                                                                                            associatedOptometristId,
+        return new ResponseEntity<ContractorJob>(contractorJobService.createContractorJob(  optometrist,
                                                                                             year,
                                                                                             state,
                                                                                             city,
-                                                                                            companyName,
                                                                                             practiceMode,
                                                                                             setting,
-                                                                                            weekends,
                                                                                             paidDaysOff,
                                                                                             healthInsuranceValue,
                                                                                             otherBenefitsValue,
                                                                                             comments,
-                                                                                            totalBenefitsValue,
-                                                                                            yearsOfExperience,
                                                                                             dailyRateAndBonus,
                                                                                             dailyHours,
-                                                                                            patientsPerDay,
-                                                                                            compPerPatient,
-                                                                                            compPerHour,
-                                                                                            normalizedAnnualComp), HttpStatus.OK);
+                                                                                            patientsPerDay), HttpStatus.OK);
 
     }
-
 }

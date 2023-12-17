@@ -18,59 +18,50 @@ import lombok.Setter;
 //@AllArgsConstructor
 public class ContractorJob extends Job{
     @Column(name = "daily_rate_and_bonus")
-    private Integer dailyRateAndBonus;
+    private Double dailyRateAndBonus;
     @Column(name = "daily_hours")
-    private Float dailyHours;
+    private Double dailyHours;
     @Column(name = "patients_per_day")
     private Integer patientsPerDay;
     @Column(name = "comp_per_patient")
-    private Float compPerPatient;
+    private Double compPerPatient;
     @Column(name = "comp_per_hour")
-    private Float compPerHour;
+    private Double compPerHour;
     @Column(name = "normalized_annual_comp")
-    private Integer normalizedAnnualComp;
+    private Double normalizedAnnualComp;
 
-    public ContractorJob(   String dateCreated,
-                            Optometrist associatedOptometristId,
+    public ContractorJob(   Optometrist optometrist,
                             Integer year,
                             String state,
                             String city,
-                            String companyName,
                             String practiceMode,
                             String setting,
-                            Boolean weekends,
                             Integer paidDaysOff,
                             Integer healthInsuranceValue,
                             Integer otherBenefitsValue,
                             String comments,
-                            Float totalBenefitsValue,
-                            Integer yearsOfExperience,
-                            Integer dailyRateAndBonus,
-                            Float dailyHours,
-                            Integer patientsPerDay,
-                            Float compPerPatient,
-                            Float compPerHour,
-                            Integer normalizedAnnualComp){
-        super(  dateCreated,
-                associatedOptometristId,
+                            //
+                            Double dailyRateAndBonus,
+                            Double dailyHours,
+                            Integer patientsPerDay
+                            ){
+        super(  optometrist,
                 year,
                 state,
                 city,
-                companyName,
                 practiceMode,
                 setting,
-                weekends,
                 paidDaysOff,
                 healthInsuranceValue,
                 otherBenefitsValue,
-                comments,
-                totalBenefitsValue,
-                yearsOfExperience);
+                comments
+                );
         this.dailyRateAndBonus=dailyRateAndBonus;
         this.dailyHours=dailyHours;
         this.patientsPerDay=patientsPerDay;
-        this.compPerPatient=compPerPatient;
-        this.compPerHour=compPerHour;
-        this.normalizedAnnualComp=normalizedAnnualComp;
+
+        this.normalizedAnnualComp= (dailyRateAndBonus*260 +healthInsuranceValue+otherBenefitsValue);
+        this.compPerPatient = normalizedAnnualComp/(patientsPerDay*260);
+        this.compPerHour = normalizedAnnualComp/(dailyHours*260);
     }
 }

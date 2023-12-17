@@ -23,49 +23,36 @@ public class W2JobService {
         return w2JobRepository.findById(id);
     }
 
-    public W2Job createW2Job( String dateCreated,
-                              Optometrist associatedOptometristId,
+    public W2Job createW2Job(
+                              Optometrist optometrist,
                               Integer year,
                               String state,
                               String city,
-                              String companyName,
                               String practiceMode,
                               String setting,
-                              Boolean weekends,
                               Integer paidDaysOff,
                               Integer healthInsuranceValue,
                               Integer otherBenefitsValue,
                               String comments,
-                              Float totalBenefitsValue,
-                              Integer yearsOfExperience,
-                              Integer annualSalaryandBonus,
-                              Float weeklyHours,
-                              Integer patientsPerWeek,
-                              Float compPerPatient,
-                              Float compPerHour,
-                              Integer normalizedAnnualComp){
+                              Double annualSalaryAndBonus,
+                              Double weeklyHours,
+                              Integer patientsPerWeek){
 
-        W2Job w2Job = new W2Job(    dateCreated,
-                                    associatedOptometristId,
+        W2Job w2Job = new W2Job(
+                                    optometrist,
                                     year,
                                     state,
                                     city,
-                                    companyName,
                                     practiceMode,
                                     setting,
-                                    weekends,
                                     paidDaysOff,
                                     healthInsuranceValue,
                                     otherBenefitsValue,
                                     comments,
-                                    totalBenefitsValue,
-                                    yearsOfExperience,
-                                    annualSalaryandBonus,
+                                    annualSalaryAndBonus,
                                     weeklyHours,
-                                    patientsPerWeek,
-                                    compPerPatient,
-                                    compPerHour,
-                                    normalizedAnnualComp);
+                                    patientsPerWeek
+                                    );
 
         w2JobRepository.save(w2Job);
         return w2Job;

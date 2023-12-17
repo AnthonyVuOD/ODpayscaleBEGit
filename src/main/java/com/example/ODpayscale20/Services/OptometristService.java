@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 //Services access data from repository.
 @Service
@@ -25,15 +26,17 @@ public class OptometristService {
         return optometristRepository.findById(id);
     }
 
-    public Optometrist createOptometrist(String odId,
+    public Optometrist createOptometrist(
+//                                        String odId,
                                          Integer yearGraduated,
-                                         boolean residency,
+                                         String residency,
                                          Integer initialDebt,
                                          String gender,
-                                         String race,
-                                         ArrayList<Job> jobs){
+                                         String race
+//                                         Set<Job> jobs
+                                                        ){
 
-        Optometrist optometrist = new Optometrist(odId,yearGraduated,residency,initialDebt,gender,race,jobs);
+        Optometrist optometrist = new Optometrist(yearGraduated,residency,initialDebt,gender,race);
 
         optometristRepository.save(optometrist);
 
