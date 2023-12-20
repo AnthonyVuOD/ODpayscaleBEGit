@@ -63,7 +63,7 @@ public class Optometrist {
         this.initialDebt=initialDebt;
         this.gender=gender;
         this.race=race;
-        this.jobs=new HashSet<>(jobs);
+        this.jobs =jobs;
     }
     public Optometrist(
 //                       String userName,

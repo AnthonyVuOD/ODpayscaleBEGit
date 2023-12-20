@@ -22,7 +22,7 @@ public class OptometristController {
     @Autowired
     private OptometristService optometristService;
 
-    @GetMapping
+    @GetMapping("getalloptometrists")
     public ResponseEntity<List<Optometrist>> getAllOptometrists(){
         return new ResponseEntity<List<Optometrist>>(optometristService.allOptometrists(), HttpStatus.OK);
     }
@@ -39,11 +39,13 @@ public class OptometristController {
         Integer initialDebt = optometrist.getInitialDebt();
         String gender = optometrist.getGender();
         String race = optometrist.getRace();
+        Set<Job> jobs = optometrist.getJobs();
 
         return new ResponseEntity<Optometrist>(optometristService.createOptometrist(yearGraduated,
                                                                                     residency,
                                                                                     initialDebt,
                                                                                     gender,
-                                                                                    race), HttpStatus.CREATED);
+                                                                                    race,
+                                                                                    jobs ), HttpStatus.CREATED);
     }
 }

@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.context.annotation.Primary;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Entity
 @Table(name = "jobs")
@@ -27,7 +28,7 @@ public class Job {
 
     @ManyToOne(fetch = FetchType.EAGER,
                 cascade = CascadeType.ALL)
-    @JoinColumn(name = "optometrist_id",nullable=false)
+    @JoinColumn(name = "optometrist_id")
 //    @Column(name = "optometrist_id")
     private Optometrist optometrist;
 
@@ -70,10 +71,9 @@ public class Job {
                 String city,
                 String practiceMode,
                 String setting,
-                //
+                Integer paidDaysOff,
                 Integer healthInsuranceValue,
                 Integer otherBenefitsValue,
-                Integer paidDaysOff,
                 String comments
         ){
         this.optometrist=optometrist;
@@ -87,9 +87,8 @@ public class Job {
         this.otherBenefitsValue=otherBenefitsValue;
         this.comments=comments;
         this.totalBenefitsValue = healthInsuranceValue+otherBenefitsValue;
-
-        //need to fix
-        this.yearsOfExperience = year - 2000;
+        // fixed
+        this.yearsOfExperience = year - optometrist.getYearGraduated();
 
     }
 }

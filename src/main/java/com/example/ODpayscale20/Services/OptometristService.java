@@ -27,16 +27,15 @@ public class OptometristService {
     }
 
     public Optometrist createOptometrist(
-//                                        String odId,
                                          Integer yearGraduated,
                                          String residency,
                                          Integer initialDebt,
                                          String gender,
-                                         String race
-//                                         Set<Job> jobs
+                                         String race,
+                                         Set<Job> jobs
                                                         ){
 
-        Optometrist optometrist = new Optometrist(yearGraduated,residency,initialDebt,gender,race);
+        Optometrist optometrist = new Optometrist(yearGraduated,residency,initialDebt,gender,race, jobs);
 
         optometristRepository.save(optometrist);
 

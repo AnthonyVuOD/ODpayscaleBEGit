@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Optional;
+
 @Entity
 @Table(name="contractor_jobs")
 @Data
@@ -60,7 +62,7 @@ public class ContractorJob extends Job{
         this.dailyHours=dailyHours;
         this.patientsPerDay=patientsPerDay;
 
-        this.normalizedAnnualComp= (dailyRateAndBonus*260 +healthInsuranceValue+otherBenefitsValue);
+        this.normalizedAnnualComp= (dailyRateAndBonus*260 +healthInsuranceValue+otherBenefitsValue+(dailyRateAndBonus*paidDaysOff));
         this.compPerPatient = normalizedAnnualComp/(patientsPerDay*260);
         this.compPerHour = normalizedAnnualComp/(dailyHours*260);
     }

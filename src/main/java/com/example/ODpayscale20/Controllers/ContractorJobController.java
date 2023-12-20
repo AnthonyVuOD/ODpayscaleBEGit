@@ -2,8 +2,11 @@ package com.example.ODpayscale20.Controllers;
 
 
 import com.example.ODpayscale20.Entities.ContractorJob;
+import com.example.ODpayscale20.Entities.ContractorJobRequest;
 import com.example.ODpayscale20.Entities.Optometrist;
+import com.example.ODpayscale20.Repositories.OptometristRepository;
 import com.example.ODpayscale20.Services.ContractorJobService;
+import com.example.ODpayscale20.Services.OptometristService;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,8 +22,10 @@ public class ContractorJobController {
 
     @Autowired
     private ContractorJobService contractorJobService;
+    @Autowired
+    private OptometristRepository optometristRepository;
 
-    @GetMapping
+    @GetMapping("/getallcontractorjobs")
     public ResponseEntity<List<ContractorJob>> getAllContractorJobs(){
         return new ResponseEntity<List<ContractorJob>>(contractorJobService.allContractorJobs(), HttpStatus.OK);
     }
@@ -31,8 +36,8 @@ public class ContractorJobController {
     }
 
     @PostMapping("/createcontractorjob")
-    public ResponseEntity<ContractorJob> postCreateContractorJob(  @RequestBody ContractorJob contractorJob){
-        Optometrist optometrist = contractorJob.getOptometrist();
+    public ResponseEntity<ContractorJob> postCreateContractorJobThroughContractorJobRequest( @RequestBody ContractorJobRequest contractorJob){
+        Long optometristId = contractorJob.getOptometristId();
         Integer year = contractorJob.getYear();
         String state = contractorJob.getState();
         String city = contractorJob.getCity();
@@ -46,19 +51,20 @@ public class ContractorJobController {
         Double dailyHours = contractorJob.getDailyHours();
         Integer patientsPerDay =contractorJob.getPatientsPerDay();
 
-        return new ResponseEntity<ContractorJob>(contractorJobService.createContractorJob(  optometrist,
-                                                                                            year,
-                                                                                            state,
-                                                                                            city,
-                                                                                            practiceMode,
-                                                                                            setting,
-                                                                                            paidDaysOff,
-                                                                                            healthInsuranceValue,
-                                                                                            otherBenefitsValue,
-                                                                                            comments,
-                                                                                            dailyRateAndBonus,
-                                                                                            dailyHours,
-                                                                                            patientsPerDay), HttpStatus.OK);
+        return new ResponseEntity<ContractorJob>(contractorJobService.createContractorJobThroughContractorRequest(
+                                                                optometristId,
+                                                                year,
+                                                                state,
+                                                                city,
+                                                                practiceMode,
+                                                                setting,
+                                                                paidDaysOff,
+                                                                healthInsuranceValue,
+                                                                otherBenefitsValue,
+                                                                comments,
+                                                                dailyRateAndBonus,
+                                                                dailyHours,
+                                                                patientsPerDay), HttpStatus.OK);
 
     }
 }

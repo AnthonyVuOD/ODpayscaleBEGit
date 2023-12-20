@@ -59,7 +59,7 @@ public class W2Job extends Job{
         this.weeklyHours=weeklyHours;
         this.patientsPerWeek=patientsPerWeek;
 
-        this.normalizedAnnualComp= (annualSalaryAndBonus +healthInsuranceValue+otherBenefitsValue);
+        this.normalizedAnnualComp= (annualSalaryAndBonus +healthInsuranceValue+otherBenefitsValue+((annualSalaryAndBonus/260)*paidDaysOff));
         this.compPerPatient = normalizedAnnualComp/(patientsPerWeek*52);
         this.compPerHour = normalizedAnnualComp/(weeklyHours*52);
     }

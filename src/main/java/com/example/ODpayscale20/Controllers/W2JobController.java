@@ -3,6 +3,8 @@ package com.example.ODpayscale20.Controllers;
 
 import com.example.ODpayscale20.Entities.Optometrist;
 import com.example.ODpayscale20.Entities.W2Job;
+import com.example.ODpayscale20.Entities.W2JobRequest;
+import com.example.ODpayscale20.Repositories.OptometristRepository;
 import com.example.ODpayscale20.Services.W2JobService;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +21,10 @@ public class W2JobController {
 
     @Autowired
     private W2JobService w2JobService;
+//    @Autowired
+//    private OptometristRepository optometristRepository;
 
-    @GetMapping
+    @GetMapping("/getallw2jobs")
     public ResponseEntity<List<W2Job>> getAllW2Jobs(){
         return new ResponseEntity<List<W2Job>>(w2JobService.allW2Jobs(), HttpStatus.OK);
     }
@@ -30,8 +34,9 @@ public class W2JobController {
     }
 
     @PostMapping("/createw2job")
-    public ResponseEntity<W2Job> postCreateW2Job( @RequestBody W2Job w2job){
-        Optometrist optometrist = w2job.getOptometrist();
+    public ResponseEntity<W2Job> postCreateW2JobThroughW2JobRequest( @RequestBody W2JobRequest w2job){
+        Long optometristId = w2job.getOptometristId();
+//        Optometrist optometrist = optometristRepository.getReferenceById(w2job.getOptometrist().getId());
         Integer year = w2job.getYear();
         String state = w2job.getState();
         String city = w2job.getCity();
@@ -45,8 +50,10 @@ public class W2JobController {
         Double weeklyHours = w2job.getWeeklyHours();
         Integer patientsPerWeek = w2job.getPatientsPerWeek();
 
-        return new ResponseEntity<W2Job>(w2JobService.createW2Job(
-                                                                    optometrist,
+
+
+        return new ResponseEntity<W2Job>(w2JobService.createW2JobThroughW2JobRequest(
+                                                                    optometristId,
                                                                     year,
                                                                     state,
                                                                     city,
