@@ -1,5 +1,6 @@
 package com.example.ODpayscale20.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -45,6 +46,8 @@ public class Optometrist {
                     cascade = CascadeType.ALL,
                     fetch = FetchType.EAGER
     )
+    // Prevents recursion
+    @JsonIgnore
     private Set<Job> jobs;
 
 

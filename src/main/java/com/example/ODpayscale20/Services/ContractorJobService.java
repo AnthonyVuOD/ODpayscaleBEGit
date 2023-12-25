@@ -51,7 +51,7 @@ public class ContractorJobService {
                                              Integer patientsPerDay){
 
         Optometrist optometrist = optometristRepository.findById(optometristId)
-                .orElseThrow(() -> new EntityNotFoundException("Optometrist with id not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Optometrist with id:"+optometristId+" not found"));
 
         ContractorJob contractorJob = new ContractorJob(
                                                         optometrist,
@@ -66,13 +66,12 @@ public class ContractorJobService {
                                                         comments,
                                                         dailyRateAndBonus,
                                                         dailyHours,
-                                                        patientsPerDay
-                                                        );
-
+                                                        patientsPerDay);
         //This saves contractorJob to OD Set<jobs>
 //        Set<Job> jobs = optometrist.getJobs();
 //        jobs.add(contractorJob);
 //        optometristRepository.save(optometrist);
+
         // Saves new contractorJob
         contractorJobRepository.save(contractorJob);
 
