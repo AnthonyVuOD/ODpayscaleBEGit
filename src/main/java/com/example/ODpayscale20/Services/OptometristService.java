@@ -26,6 +26,7 @@ public class OptometristService {
         return optometristRepository.findById(id);
     }
 
+
     public Optometrist createOptometrist(
                                          Integer yearGraduated,
                                          String residency,

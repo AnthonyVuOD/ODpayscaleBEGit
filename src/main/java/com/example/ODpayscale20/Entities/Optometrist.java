@@ -44,7 +44,7 @@ public class Optometrist {
 //    @Column(name = "job_ids")
     @OneToMany(     mappedBy = "optometrist",
                     cascade = CascadeType.ALL,
-                    fetch = FetchType.EAGER
+                    fetch =FetchType.EAGER
     )
     // Prevents recursion
     @JsonIgnore

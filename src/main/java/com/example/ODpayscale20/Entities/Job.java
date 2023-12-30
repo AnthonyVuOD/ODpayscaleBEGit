@@ -26,8 +26,9 @@ public class Job {
     @Column(name = "date_created")
     private Date dateCreated;
 
-    @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
+    @ManyToOne( fetch = FetchType.EAGER
+//                cascade = {CascadeType.PERSIST}
+                )
     @JoinColumn(name = "optometrist_id")
 //    @Column(name = "optometrist_id")
     private Optometrist optometrist;
@@ -89,6 +90,5 @@ public class Job {
         this.totalBenefitsValue = healthInsuranceValue+otherBenefitsValue;
         // fixed
         this.yearsOfExperience = year - optometrist.getYearGraduated();
-
     }
 }

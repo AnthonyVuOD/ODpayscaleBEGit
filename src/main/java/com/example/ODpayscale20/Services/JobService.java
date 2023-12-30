@@ -16,4 +16,16 @@ public class JobService {
         return jobRepository.findAll();
     }
 
+    public boolean deleteJob(Long jobId) {
+        // Check if the job exists before attempting to delete
+        if (jobRepository.existsById(jobId)) {
+            jobRepository.deleteById(jobId);
+            return true;  // Job deleted successfully
+            //but not being updated in MySQL
+        } else {
+            return false; // Job not found
+        }
+    }
+
+//    public List<Job> jobsByOptometristId {return jobRepository.findAllById()};
 }

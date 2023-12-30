@@ -14,6 +14,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1/jobs")
 public class JobController {
+
     @Autowired
     private JobService jobService;
 
@@ -22,10 +23,21 @@ public class JobController {
     public ResponseEntity<List<Job>> getAllJobs(){
         return new ResponseEntity<List<Job>>(jobService.allJobs(), HttpStatus.OK);
     }
+    @DeleteMapping("/deletejob/{id}")
+    public ResponseEntity<String> deleteJob(@PathVariable Long id) {
+        // Logic to delete the job with the given ID
+        // You might want to check if the job exists before deleting it
 
-//    @GetMapping
-//    public ResponseEntity<List<Job>> getAllJobsByOptometristId(){
-//        return new ResponseEntity<List<Job>>(jobService.allJobs().stream().filter())
-//    }
-//    DeleteMapping
+        // For demonstration purposes, let's assume a service method is used
+        // to delete the job. Replace this with your actual deletion logic.
+        boolean isDeleted = jobService.deleteJob(id);
+
+        if (isDeleted) {
+            return ResponseEntity.ok("Job deleted successfully");
+        } else {
+            return ResponseEntity.status(404).body("Job not found");
+        }
+    }
 }
+
+
