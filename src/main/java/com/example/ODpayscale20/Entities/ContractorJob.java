@@ -32,6 +32,9 @@ public class ContractorJob extends Job{
     @Column(name = "normalized_annual_comp")
     private Double normalizedAnnualComp;
 
+    @Column(name = "paid_days_off_value")
+    private Double paidDaysOffValue;
+
     public ContractorJob(   Optometrist optometrist,
                             Integer year,
                             String state,
@@ -62,8 +65,11 @@ public class ContractorJob extends Job{
         this.dailyHours=dailyHours;
         this.patientsPerDay=patientsPerDay;
 
-        this.normalizedAnnualComp= (dailyRateAndBonus*260 +healthInsuranceValue+otherBenefitsValue+(dailyRateAndBonus*paidDaysOff));
-        this.compPerPatient = normalizedAnnualComp/(patientsPerDay*260);
-        this.compPerHour = normalizedAnnualComp/(dailyHours*260);
+        this.paidDaysOffValue=paidDaysOff*dailyRateAndBonus;
+
+        this.normalizedAnnualComp= (dailyRateAndBonus*255 +healthInsuranceValue+otherBenefitsValue+paidDaysOffValue);
+//        this.normalizedAnnualComp= (dailyRateAndBonus*260 +healthInsuranceValue+otherBenefitsValue+(dailyRateAndBonus*paidDaysOff));
+        this.compPerPatient = normalizedAnnualComp/(patientsPerDay*255);
+        this.compPerHour = normalizedAnnualComp/(dailyHours*255);
     }
 }

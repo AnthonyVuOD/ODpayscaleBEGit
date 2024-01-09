@@ -30,6 +30,10 @@ public class W2Job extends Job{
     @Column(name = "normalized_annual_comp")
     private Double normalizedAnnualComp;
 
+    //
+    @Column(name = "paid_days_off_value")
+    private Double paidDaysOffValue;
+
     public W2Job(
                     Optometrist optometrist,
                     Integer year,
@@ -59,7 +63,10 @@ public class W2Job extends Job{
         this.weeklyHours=weeklyHours;
         this.patientsPerWeek=patientsPerWeek;
 
-        this.normalizedAnnualComp= (annualSalaryAndBonus +healthInsuranceValue+otherBenefitsValue+((annualSalaryAndBonus/260)*paidDaysOff));
+        this.paidDaysOffValue= ((annualSalaryAndBonus/255)*paidDaysOff);
+
+        this.normalizedAnnualComp= (annualSalaryAndBonus +healthInsuranceValue+otherBenefitsValue+paidDaysOffValue);
+//        this.normalizedAnnualComp= (annualSalaryAndBonus +healthInsuranceValue+otherBenefitsValue+((annualSalaryAndBonus/255)*paidDaysOff));
         this.compPerPatient = normalizedAnnualComp/(patientsPerWeek*52);
         this.compPerHour = normalizedAnnualComp/(weeklyHours*52);
     }

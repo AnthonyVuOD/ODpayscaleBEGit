@@ -18,13 +18,23 @@ public class JobService {
 
     public boolean deleteJob(Long jobId) {
         // Check if the job exists before attempting to delete
+//        if (jobRepository.existsById(jobId)) {
+//            jobRepository.deleteById(jobId);
+//            return true;  // Job deleted successfully
+//            //but not being updated in MySQL
+//        } else {
+//            return false; // Job not found
+//        }
+
         if (jobRepository.existsById(jobId)) {
-            jobRepository.deleteById(jobId);
+            Job job = jobRepository.findById(jobId).get();
+            jobRepository.delete(job);
             return true;  // Job deleted successfully
             //but not being updated in MySQL
         } else {
             return false; // Job not found
         }
+
     }
 
 //    public List<Job> jobsByOptometristId {return jobRepository.findAllById()};
