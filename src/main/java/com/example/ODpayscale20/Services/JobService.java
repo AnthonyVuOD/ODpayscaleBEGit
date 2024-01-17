@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class JobService {
@@ -37,5 +38,14 @@ public class JobService {
 
     }
 
-//    public List<Job> jobsByOptometristId {return jobRepository.findAllById()};
+    //Get Jobs by OptometristId
+    public List<Job> jobsByOptometristId(Long optometristId){
+
+        List<Job> allJobs = jobRepository.findAll();
+
+        // Filter jobs based on optometristId
+        return allJobs.stream()
+                .filter(job -> job.getOptometrist().getId().equals(optometristId))
+                .collect(Collectors.toList());
+    }
 }

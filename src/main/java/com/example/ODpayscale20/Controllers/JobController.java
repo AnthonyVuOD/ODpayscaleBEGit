@@ -38,6 +38,12 @@ public class JobController {
             return ResponseEntity.status(404).body("Job not found");
         }
     }
+
+    //New
+    @GetMapping("/getjobsbyoptometristid/{optometristId}")
+    public ResponseEntity<List<Job>> getJobsByOptometristId(@PathVariable Long optometristId) {
+        return new ResponseEntity<List<Job>>(jobService.jobsByOptometristId(optometristId),HttpStatus.OK);
+    }
 }
 
 
