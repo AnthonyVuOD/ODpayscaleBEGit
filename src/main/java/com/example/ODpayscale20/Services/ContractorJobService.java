@@ -42,13 +42,13 @@ public class ContractorJobService {
                                              String city,
                                              String practiceMode,
                                              String setting,
-                                             Integer paidDaysOff,
+                                             Double paidDaysOff,
                                              Integer healthInsuranceValue,
                                              Integer otherBenefitsValue,
                                              String comments,
                                              Double dailyRateAndBonus,
                                              Double dailyHours,
-                                             Integer patientsPerDay){
+                                             Double patientsPerDay){
 
         Optometrist optometrist = optometristRepository.findById(optometristId)
                 .orElseThrow(() -> new EntityNotFoundException("Optometrist with id:"+optometristId+" not found"));

@@ -24,7 +24,7 @@ public class ContractorJob extends Job{
     @Column(name = "daily_hours")
     private Double dailyHours;
     @Column(name = "patients_per_day")
-    private Integer patientsPerDay;
+    private Double patientsPerDay;
     @Column(name = "comp_per_patient")
     private Double compPerPatient;
     @Column(name = "comp_per_hour")
@@ -44,14 +44,14 @@ public class ContractorJob extends Job{
                             String city,
                             String practiceMode,
                             String setting,
-                            Integer paidDaysOff,
+                            Double paidDaysOff,
                             Integer healthInsuranceValue,
                             Integer otherBenefitsValue,
                             String comments,
                             //
                             Double dailyRateAndBonus,
                             Double dailyHours,
-                            Integer patientsPerDay
+                            Double patientsPerDay
                             ){
         super(  optometrist,
                 year,
@@ -67,12 +67,10 @@ public class ContractorJob extends Job{
         this.dailyRateAndBonus=dailyRateAndBonus;
         this.dailyHours=dailyHours;
         this.patientsPerDay=patientsPerDay;
-
-        this.paidDaysOffValue=paidDaysOff*dailyRateAndBonus;
+        
         this.annualizedDailyRateAndBonus=dailyRateAndBonus*255;
-
+        this.paidDaysOffValue=paidDaysOff*dailyRateAndBonus;
         this.normalizedAnnualComp= (dailyRateAndBonus*255 +healthInsuranceValue+otherBenefitsValue+paidDaysOffValue);
-//        this.normalizedAnnualComp= (dailyRateAndBonus*260 +healthInsuranceValue+otherBenefitsValue+(dailyRateAndBonus*paidDaysOff));
         this.compPerPatient = normalizedAnnualComp/(patientsPerDay*255);
         this.compPerHour = normalizedAnnualComp/(dailyHours*255);
     }

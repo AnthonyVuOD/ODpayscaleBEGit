@@ -17,8 +17,21 @@ public class JobService {
         return jobRepository.findAll();
     }
 
-    public boolean deleteJob(Long jobId) {
-        // Check if the job exists before attempting to delete
+    public String deleteJob(Long jobId){
+        jobRepository.deleteById(jobId);
+        return ("Job "+ jobId + " deleted.");
+    }
+
+//    public boolean deleteJob(Long jobId) {
+//        // Check if the job exists before attempting to delete
+////        if (jobRepository.existsById(jobId)) {
+////            jobRepository.deleteById(jobId);
+////            return true;  // Job deleted successfully
+////            //but not being updated in MySQL
+////        } else {
+////            return false; // Job not found
+////        }
+//
 //        if (jobRepository.existsById(jobId)) {
 //            jobRepository.deleteById(jobId);
 //            return true;  // Job deleted successfully
@@ -26,17 +39,8 @@ public class JobService {
 //        } else {
 //            return false; // Job not found
 //        }
-
-        if (jobRepository.existsById(jobId)) {
-            Job job = jobRepository.findById(jobId).get();
-            jobRepository.delete(job);
-            return true;  // Job deleted successfully
-            //but not being updated in MySQL
-        } else {
-            return false; // Job not found
-        }
-
-    }
+//
+//    }
 
     //Get Jobs by OptometristId
     public List<Job> jobsByOptometristId(Long optometristId){

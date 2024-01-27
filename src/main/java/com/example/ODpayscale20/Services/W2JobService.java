@@ -42,13 +42,13 @@ public class W2JobService {
                               String city,
                               String practiceMode,
                               String setting,
-                              Integer paidDaysOff,
+                              Double paidDaysOff,
                               Integer healthInsuranceValue,
                               Integer otherBenefitsValue,
                               String comments,
                               Double annualSalaryAndBonus,
                               Double weeklyHours,
-                              Integer patientsPerWeek){
+                              Double patientsPerWeek){
 
         Optometrist optometrist = optometristRepository.findById(optometristId)
                 .orElseThrow(() -> new EntityNotFoundException("Optometrist with id not found"));

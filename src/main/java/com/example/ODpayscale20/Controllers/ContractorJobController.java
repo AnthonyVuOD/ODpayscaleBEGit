@@ -44,13 +44,13 @@ public class ContractorJobController {
         String city = contractorJob.getCity();
         String practiceMode = contractorJob.getPracticeMode();
         String setting = contractorJob.getSetting();
-        Integer paidDaysOff = contractorJob.getPaidDaysOff();
+        Double paidDaysOff = contractorJob.getPaidDaysOff();
         Integer healthInsuranceValue = contractorJob.getHealthInsuranceValue();
         Integer otherBenefitsValue = contractorJob.getOtherBenefitsValue();
         String comments = contractorJob.getComments();
         Double dailyRateAndBonus = contractorJob.getDailyRateAndBonus();
         Double dailyHours = contractorJob.getDailyHours();
-        Integer patientsPerDay =contractorJob.getPatientsPerDay();
+        Double patientsPerDay =contractorJob.getPatientsPerDay();
 
         return new ResponseEntity<ContractorJob>(contractorJobService.createContractorJobThroughContractorRequest(
                                                                 optometristId,

@@ -49,7 +49,7 @@ public class Job {
     private String setting;
 
     @Column(name = "paid_days_off")
-    private Integer paidDaysOff;
+    private Double paidDaysOff;
 
     @Column(name = "health_insurance_value")
     private Integer healthInsuranceValue;
@@ -72,7 +72,7 @@ public class Job {
                 String city,
                 String practiceMode,
                 String setting,
-                Integer paidDaysOff,
+                Double paidDaysOff,
                 Integer healthInsuranceValue,
                 Integer otherBenefitsValue,
                 String comments

@@ -26,6 +26,32 @@ public class OptometristService {
         return optometristRepository.findById(id);
     }
 
+    public String deleteOptometrist(Long id){
+        optometristRepository.deleteById(id);
+        return "OD "+ id +" deleted." ;
+    }
+
+
+//    public Optional<Optometrist> updateOptometrist( Long id,
+//                                                    Integer yearGraduated,
+//                                                    String residency,
+//                                                    Integer initialDebt,
+//                                                    String gender,
+//                                                    String race
+//                                                    ) {
+//
+//        Optional<Optometrist> optometristToUpdate = optometristRepository.findById(id);
+//        optometristToUpdate.get().setYearGraduated(yearGraduated);
+//        optometristToUpdate.get().setResidency(residency);
+//        optometristToUpdate.get().setInitialDebt(initialDebt);
+//        optometristToUpdate.get().setGender(gender);
+//        optometristToUpdate.get().setRace(race);
+//
+//        optometristRepository.save(optometristToUpdate);
+////
+//        return optometristToUpdate;
+//    }
+
 
     public Optometrist createOptometrist(
                                          Integer yearGraduated,

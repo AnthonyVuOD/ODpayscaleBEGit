@@ -16,11 +16,11 @@ public class ContractorJobRequest {
     private String city;
     private String practiceMode;
     private String setting ;
-    private Integer paidDaysOff;
+    private Double paidDaysOff;
     private Integer healthInsuranceValue;
     private Integer otherBenefitsValue;
     private String comments;
     private Double dailyRateAndBonus;
     private Double dailyHours;
-    private Integer patientsPerDay;
+    private Double patientsPerDay;
 }

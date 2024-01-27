@@ -16,11 +16,11 @@ public class W2JobRequest {
     private String city;
     private String practiceMode;
     private String setting;
-    private Integer paidDaysOff;
+    private Double paidDaysOff;
     private Integer healthInsuranceValue;
     private Integer otherBenefitsValue;
     private String comments;
     private Double annualSalaryAndBonus;
     private Double weeklyHours;
-    private Integer patientsPerWeek;
+    private Double patientsPerWeek;
 }

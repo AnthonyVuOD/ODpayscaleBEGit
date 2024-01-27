@@ -42,13 +42,13 @@ public class W2JobController {
         String city = w2job.getCity();
         String practiceMode = w2job.getPracticeMode();
         String setting = w2job.getSetting();
-        Integer paidDaysOff = w2job.getPaidDaysOff();
+        Double paidDaysOff = w2job.getPaidDaysOff();
         Integer healthInsuranceValue = w2job.getHealthInsuranceValue();
         Integer otherBenefitsValue = w2job.getOtherBenefitsValue();
         String comments= w2job.getComments();
         Double annualSalaryAndBonus = w2job.getAnnualSalaryAndBonus();
         Double weeklyHours = w2job.getWeeklyHours();
-        Integer patientsPerWeek = w2job.getPatientsPerWeek();
+        Double patientsPerWeek = w2job.getPatientsPerWeek();
 
 
 

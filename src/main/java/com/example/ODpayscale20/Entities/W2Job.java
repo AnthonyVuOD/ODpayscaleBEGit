@@ -22,7 +22,7 @@ public class W2Job extends Job{
     @Column(name = "weekly_hours")
     private Double weeklyHours;
     @Column(name = "patients_per_week")
-    private int patientsPerWeek;
+    private Double patientsPerWeek;
     @Column(name = "comp_per_patient")
     private Double compPerPatient;
     @Column(name = "comp_per_hour")
@@ -41,13 +41,14 @@ public class W2Job extends Job{
                     String city,
                     String practiceMode,
                     String setting,
-                    Integer paidDaysOff,
+                    Double paidDaysOff,
                     Integer healthInsuranceValue,
                     Integer otherBenefitsValue,
                     String comments,
+                    //
                     Double annualSalaryAndBonus,
                     Double weeklyHours,
-                    Integer patientsPerWeek){
+                    Double patientsPerWeek){
         super(
                 optometrist,
                 year,
@@ -64,9 +65,7 @@ public class W2Job extends Job{
         this.patientsPerWeek=patientsPerWeek;
 
         this.paidDaysOffValue= ((annualSalaryAndBonus/255)*paidDaysOff);
-
         this.normalizedAnnualComp= (annualSalaryAndBonus +healthInsuranceValue+otherBenefitsValue+paidDaysOffValue);
-//        this.normalizedAnnualComp= (annualSalaryAndBonus +healthInsuranceValue+otherBenefitsValue+((annualSalaryAndBonus/255)*paidDaysOff));
         this.compPerPatient = normalizedAnnualComp/(patientsPerWeek*52);
         this.compPerHour = normalizedAnnualComp/(weeklyHours*52);
     }
