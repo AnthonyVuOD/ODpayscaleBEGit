@@ -67,7 +67,7 @@ public class ContractorJob extends Job{
         this.dailyRateAndBonus=dailyRateAndBonus;
         this.dailyHours=dailyHours;
         this.patientsPerDay=patientsPerDay;
-        
+
         this.annualizedDailyRateAndBonus=dailyRateAndBonus*255;
         this.paidDaysOffValue=paidDaysOff*dailyRateAndBonus;
         this.normalizedAnnualComp= (dailyRateAndBonus*255 +healthInsuranceValue+otherBenefitsValue+paidDaysOffValue);

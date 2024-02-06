@@ -32,15 +32,31 @@ public class OptometristService {
     }
 
 
-//    public Optional<Optometrist> updateOptometrist( Long id,
-//                                                    Integer yearGraduated,
-//                                                    String residency,
-//                                                    Integer initialDebt,
-//                                                    String gender,
-//                                                    String race
-//                                                    ) {
-//
-//        Optional<Optometrist> optometristToUpdate = optometristRepository.findById(id);
+    public Optional<Optometrist> updateOptometrist( Long id,
+                                                    Integer yearGraduated,
+                                                    String residency,
+                                                    Integer initialDebt,
+                                                    String gender,
+                                                    String race
+                                                    ) {
+
+        Optional<Optometrist> optometristToUpdate = optometristRepository.findById(id);
+        if (optometristToUpdate.isPresent()){
+            Optometrist optometrist = optometristToUpdate.get();
+
+            optometrist.setYearGraduated(yearGraduated);
+            optometrist.setResidency(residency);
+            optometrist.setInitialDebt(initialDebt);
+            optometrist.setGender(gender);
+            optometrist.setRace(race);
+
+            optometristRepository.save(optometrist);
+
+            return Optional.of(optometrist);
+        } else {
+            return Optional.empty();
+        }
+
 //        optometristToUpdate.get().setYearGraduated(yearGraduated);
 //        optometristToUpdate.get().setResidency(residency);
 //        optometristToUpdate.get().setInitialDebt(initialDebt);
@@ -50,7 +66,7 @@ public class OptometristService {
 //        optometristRepository.save(optometristToUpdate);
 ////
 //        return optometristToUpdate;
-//    }
+    }
 
 
     public Optometrist createOptometrist(

@@ -57,38 +57,29 @@ public class OptometristController {
                                                                                     jobs ), HttpStatus.CREATED);
     }
     @PutMapping("/updateoptometrist/{userId}")
-    public String updateOptometrist(){
-        return "updated!";
-    }
-//    public ResponseEntity<Optional<Optometrist>> updateOptometrist(@PathVariable Long userId, @RequestBody Optometrist updatedOptometristData) {
-////        Optional<Optometrist> optometristToUpdate = optometristService.singleOptometrist(userId);
-//
-////        Long id = userId;
-//        Integer yearGraduated = updatedOptometristData.getYearGraduated();
-//        String residency = updatedOptometristData.getResidency();
-//        Integer initialDebt = updatedOptometristData.getInitialDebt();
-//        String gender = updatedOptometristData.getGender();
-//        String race = updatedOptometristData.getRace();
+//    public String updateOptometrist(@PathVariable Long userId, @RequestBody Optometrist updatedOptometristData){
+//        return "updated!" + updatedOptometristData;
+//    }
+    public ResponseEntity<Optional<Optometrist>> updateOptometrist(@PathVariable Long userId, @RequestBody Optometrist updatedOptometristData) {
+//        Optional<Optometrist> optometristToUpdate = optometristService.singleOptometrist(userId);
+
+//        Long id = userId;
+        Integer yearGraduated = updatedOptometristData.getYearGraduated();
+        String residency = updatedOptometristData.getResidency();
+        Integer initialDebt = updatedOptometristData.getInitialDebt();
+        String gender = updatedOptometristData.getGender();
+        String race = updatedOptometristData.getRace();
 //        Set<Job> jobs = updatedOptometristData.getJobs();
-//
-//
-//        return new ResponseEntity<Optional<Optometrist>>(optometristService.updateOptometrist(  userId,
-//                                                                                                yearGraduated,
-//                                                                                                residency,
-//                                                                                                initialDebt,
-//                                                                                                gender,
-//                                                                                                race
-//                                                                                                ), HttpStatus.OK);
+
+
+        return new ResponseEntity<Optional<Optometrist>>(optometristService.updateOptometrist(  userId,
+                                                                                                yearGraduated,
+                                                                                                residency,
+                                                                                                initialDebt,
+                                                                                                gender,
+                                                                                                race
+                                                                                                ), HttpStatus.OK);
 
     }
-//
-//
-//        return new ResponseEntity<Optometrist>(optometristService.updateOptometrist( id,
-//    yearGraduated,
-//    residency,
-//    initialDebt,
-//    gender,
-//    race,
-//    jobs ), HttpStatus.CREATED);
-//    }
-//}
+}
+
