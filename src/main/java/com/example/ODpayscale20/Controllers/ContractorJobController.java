@@ -38,7 +38,7 @@ public class ContractorJobController {
 
     @PostMapping("/createcontractorjob")
     public ResponseEntity<ContractorJob> postCreateContractorJobThroughContractorJobRequest( @RequestBody ContractorJobRequest contractorJob){
-        Long optometristId = contractorJob.getOptometristId();
+        String optometristId = contractorJob.getOptometristId();
         Integer year = contractorJob.getYear();
         String state = contractorJob.getState();
         String city = contractorJob.getCity();

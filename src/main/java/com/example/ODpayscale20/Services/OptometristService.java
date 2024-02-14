@@ -22,17 +22,17 @@ public class OptometristService {
 
     public List<Optometrist> allOptometrists(){ return optometristRepository.findAll();}
 
-    public Optional<Optometrist> singleOptometrist(Long id){
+    public Optional<Optometrist> singleOptometrist(String id){
         return optometristRepository.findById(id);
     }
 
-    public String deleteOptometrist(Long id){
+    public String deleteOptometrist(String id){
         optometristRepository.deleteById(id);
         return "OD "+ id +" deleted." ;
     }
 
 
-    public Optional<Optometrist> updateOptometrist( Long id,
+    public Optional<Optometrist> updateOptometrist( String id,
                                                     Integer yearGraduated,
                                                     String residency,
                                                     Integer initialDebt,
@@ -70,6 +70,7 @@ public class OptometristService {
 
 
     public Optometrist createOptometrist(
+                                         String id,
                                          Integer yearGraduated,
                                          String residency,
                                          Integer initialDebt,
@@ -78,7 +79,7 @@ public class OptometristService {
                                          Set<Job> jobs
                                                         ){
 
-        Optometrist optometrist = new Optometrist(yearGraduated,residency,initialDebt,gender,race, jobs);
+        Optometrist optometrist = new Optometrist(id,yearGraduated,residency,initialDebt,gender,race, jobs);
 
         optometristRepository.save(optometrist);
 

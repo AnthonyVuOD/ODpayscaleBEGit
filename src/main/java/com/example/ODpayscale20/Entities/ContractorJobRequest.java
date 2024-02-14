@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ContractorJobRequest {
-    private Long optometristId;
+    private String optometristId;
     private Integer year;
     private String state;
     private String city;

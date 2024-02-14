@@ -36,7 +36,7 @@ public class W2JobService {
     }
 
     public W2Job createW2JobThroughW2JobRequest(
-                              Long optometristId,
+                              String optometristId,
                               Integer year,
                               String state,
                               String city,

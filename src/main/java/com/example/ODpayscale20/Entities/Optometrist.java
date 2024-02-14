@@ -14,13 +14,13 @@ import java.util.Set;
 @Data
 @Getter
 @Setter
-@AllArgsConstructor
+//@AllArgsConstructor
 @NoArgsConstructor
 public class Optometrist {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
+//    @GeneratedValue(strategy = GenerationType.IDENTITY )
     @Column(name = "optometrist_id")
-    private Long id;
+    private String id;
 
 //    @Column(name = "username")
 //    private String userName;
@@ -52,7 +52,7 @@ public class Optometrist {
 
 
     public Optometrist(
-//                       String userName,
+                       String id,
                        Integer yearGraduated,
                        String residency,
                        Integer initialDebt,
@@ -60,7 +60,7 @@ public class Optometrist {
                        String race,
                        Set<Job> jobs
                                     ) {
-//        this.userName=userName;
+        this.id=id;
         this.yearGraduated=yearGraduated;
         this.residency=residency;
         this.initialDebt=initialDebt;
@@ -69,13 +69,13 @@ public class Optometrist {
         this.jobs =jobs;
     }
     public Optometrist(
-//                       String userName,
+                       String id,
                        Integer yearGraduated,
                        String residency,
                        Integer initialDebt,
                        String gender,
                        String race) {
-//        this.userName=userName;
+        this.id=id;
         this.yearGraduated=yearGraduated;
         this.residency=residency;
         this.initialDebt=initialDebt;

@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 //Repositories accesses data from database
 @Repository
-public interface OptometristRepository extends JpaRepository<Optometrist,Long> {
+public interface OptometristRepository extends JpaRepository<Optometrist,String> {
 }

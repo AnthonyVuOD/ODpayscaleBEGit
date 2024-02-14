@@ -36,7 +36,7 @@ public class ContractorJobService {
     }
 
     public ContractorJob createContractorJobThroughContractorRequest(
-                                             Long optometristId,
+                                             String optometristId,
                                              Integer year,
                                              String state,
                                              String city,

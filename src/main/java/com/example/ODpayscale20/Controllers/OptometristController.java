@@ -31,17 +31,18 @@ public class OptometristController {
     }
 
     @GetMapping("/getsingleoptometrist/{id}")
-    public ResponseEntity<Optional<Optometrist>> getSingleOptometrist(@PathVariable Long id){
+    public ResponseEntity<Optional<Optometrist>> getSingleOptometrist(@PathVariable String id){
         return new ResponseEntity<Optional<Optometrist>>(optometristService.singleOptometrist(id), HttpStatus.OK);
     }
 
     @DeleteMapping("/deletesingleoptometrist/{id}")
-    public String deleteSingleOptometrist(@PathVariable Long id){
+    public String deleteSingleOptometrist(@PathVariable String id){
         return optometristService.deleteOptometrist(id);
     }
 
     @PostMapping("/createoptometrist")
     public ResponseEntity<Optometrist> postCreateOptometrist( @RequestBody Optometrist optometrist){
+        String id =optometrist.getId();
         Integer yearGraduated = optometrist.getYearGraduated();
         String residency = optometrist.getResidency();
         Integer initialDebt = optometrist.getInitialDebt();
@@ -49,7 +50,8 @@ public class OptometristController {
         String race = optometrist.getRace();
         Set<Job> jobs = optometrist.getJobs();
 
-        return new ResponseEntity<Optometrist>(optometristService.createOptometrist(yearGraduated,
+        return new ResponseEntity<Optometrist>(optometristService.createOptometrist(id,
+                                                                                    yearGraduated,
                                                                                     residency,
                                                                                     initialDebt,
                                                                                     gender,
@@ -60,7 +62,7 @@ public class OptometristController {
 //    public String updateOptometrist(@PathVariable Long userId, @RequestBody Optometrist updatedOptometristData){
 //        return "updated!" + updatedOptometristData;
 //    }
-    public ResponseEntity<Optional<Optometrist>> updateOptometrist(@PathVariable Long userId, @RequestBody Optometrist updatedOptometristData) {
+    public ResponseEntity<Optional<Optometrist>> updateOptometrist(@PathVariable String userId, @RequestBody Optometrist updatedOptometristData) {
 //        Optional<Optometrist> optometristToUpdate = optometristService.singleOptometrist(userId);
 
 //        Long id = userId;

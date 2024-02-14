@@ -35,7 +35,7 @@ public class W2JobController {
 
     @PostMapping("/createw2job")
     public ResponseEntity<W2Job> postCreateW2JobThroughW2JobRequest( @RequestBody W2JobRequest w2job){
-        Long optometristId = w2job.getOptometristId();
+        String optometristId = w2job.getOptometristId();
 //        Optometrist optometrist = optometristRepository.getReferenceById(w2job.getOptometrist().getId());
         Integer year = w2job.getYear();
         String state = w2job.getState();

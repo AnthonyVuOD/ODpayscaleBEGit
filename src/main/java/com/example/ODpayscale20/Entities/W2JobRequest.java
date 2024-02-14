@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class W2JobRequest {
-    private Long optometristId;
+    private String optometristId;
     private Integer year;
     private String state;
     private String city;

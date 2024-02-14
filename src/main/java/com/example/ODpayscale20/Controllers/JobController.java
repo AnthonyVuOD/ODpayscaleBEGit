@@ -1,7 +1,9 @@
 package com.example.ODpayscale20.Controllers;
 
 import com.example.ODpayscale20.Entities.Job;
+import com.example.ODpayscale20.Services.ContractorJobService;
 import com.example.ODpayscale20.Services.JobService;
+import com.example.ODpayscale20.Services.W2JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +20,13 @@ public class JobController {
     @Autowired
     private JobService jobService;
 
-
     @GetMapping("getalljobs")
     public ResponseEntity<List<Job>> getAllJobs(){
         return new ResponseEntity<List<Job>>(jobService.allJobs(), HttpStatus.OK);
     }
     @DeleteMapping("/deletesinglejob/{id}")
     public String deleteSingleJob(@PathVariable Long id){
+//        w2JobService.
         return jobService.deleteJob(id);
     }
 
@@ -45,7 +47,7 @@ public class JobController {
 
     //New
     @GetMapping("/getjobsbyoptometristid/{optometristId}")
-    public ResponseEntity<List<Job>> getJobsByOptometristId(@PathVariable Long optometristId) {
+    public ResponseEntity<List<Job>> getJobsByOptometristId(@PathVariable String optometristId) {
         return new ResponseEntity<List<Job>>(jobService.jobsByOptometristId(optometristId),HttpStatus.OK);
     }
 }
