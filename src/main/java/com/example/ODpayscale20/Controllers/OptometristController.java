@@ -37,7 +37,11 @@ public class OptometristController {
 
     @DeleteMapping("/deletesingleoptometrist/{id}")
     public String deleteSingleOptometrist(@PathVariable String id){
+        ///Delete from MySQL
         return optometristService.deleteOptometrist(id);
+
+        //Delete from Supabase
+//        SupabaseClient supabaseClient = new SupabaseClient(,);
     }
 
     @PostMapping("/createoptometrist")

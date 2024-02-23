@@ -7,37 +7,56 @@ import com.example.ODpayscale20.Repositories.ContractorJobRepository;
 import com.example.ODpayscale20.Repositories.JobRepository;
 import com.example.ODpayscale20.Repositories.W2JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class JobService {
+//    @Autowired
+    private final JobRepository jobRepository;
+//    @Autowired
+    private final W2JobRepository w2JobRepository;
+//    @Autowired
+    private final ContractorJobRepository contractorJobRepository;
+
     @Autowired
-    private JobRepository jobRepository;
-    @Autowired
-    private W2JobRepository w2JobRepository;
-    @Autowired
-    private ContractorJobRepository contractorJobRepository;
+    public JobService(JobRepository jobRepository,
+                      W2JobRepository w2JobRepository,
+                      ContractorJobRepository contractorJobRepository){
+        this.jobRepository=jobRepository;
+        this.w2JobRepository=w2JobRepository;
+        this.contractorJobRepository=contractorJobRepository;
+
+    }
 
     public List<Job> allJobs(){
         return jobRepository.findAll();
     }
 
+
     public String deleteJob(Long jobId){
-        // Delete associated contractor jobs first
-//        ContractorJob contractorJob =contractorJobRepository.getReferenceById(jobId);
-//        contractorJobRepository.delete(contractorJob);
+        System.out.println("The service was successfully accessed.");
 
-        // Delete associated W2 jobs
-//        W2Job w2Job = w2JobRepository.getReferenceById(jobId);
-//        w2JobRepository.delete(w2Job);
+        try {
+            // Delete the ContractorJob
+            contractorJobRepository.deleteById(jobId);
+            // Also delete the associated Job
+            jobRepository.deleteById(jobId);
 
-
-        // Delete the job itself
-        jobRepository.deleteById(jobId);
-        return ("Job "+ jobId + " deleted.");
+            System.out.println("Success?");
+            return "ContractorJob with ID " + jobId + " deleted successfully.";
+        } catch (EmptyResultDataAccessException e) {
+            // Handle case where the job with the given ID does not exist
+            return "ContractorJob with ID " + jobId + " not found.";
+        } catch (Exception e) {
+            // Handle other exceptions, such as database errors
+            return "Error deleting ContractorJob with ID " + jobId + ": " + e.getMessage();
+        }
     }
 
 //    public boolean deleteJob(Long jobId) {

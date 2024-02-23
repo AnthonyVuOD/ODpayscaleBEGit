@@ -9,6 +9,7 @@ import com.example.ODpayscale20.Repositories.OptometristRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -77,4 +78,21 @@ public class ContractorJobService {
 
         return contractorJob;
     }
+
+//    @Transactional
+//    public String deleteContractorJob(Long jobId){
+//        System.out.println("The contractorJobService was successfully accessed.");
+//
+////        ContractorJob contractorJob = contractorJobRepository.findById(jobId)
+////                .orElseThrow(() -> new RuntimeException("Contractor job not found for job with id: " + jobId));
+//
+//        try {
+//            contractorJobRepository.deleteById(jobId);
+//            System.out.println("succesfully deleted");
+//        } catch (Exception e){
+//            System.out.println("Error!");
+//        }
+//
+//        return "Hello";
+//    }
 }

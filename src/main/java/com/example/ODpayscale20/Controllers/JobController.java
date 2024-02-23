@@ -18,16 +18,27 @@ import java.util.Optional;
 public class JobController {
 
     @Autowired
+    private ContractorJobService contractorJobService;
+    @Autowired
     private JobService jobService;
+
+//    public JobController (ContractorJobService contractorJobService, JobService jobService){
+//        this.contractorJobService=contractorJobService,
+//        this.jobService=jobService;
+//    }
 
     @GetMapping("getalljobs")
     public ResponseEntity<List<Job>> getAllJobs(){
         return new ResponseEntity<List<Job>>(jobService.allJobs(), HttpStatus.OK);
     }
     @DeleteMapping("/deletesinglejob/{id}")
-    public String deleteSingleJob(@PathVariable Long id){
-//        w2JobService.
-        return jobService.deleteJob(id);
+    public ResponseEntity<String> deleteSingleJob(@PathVariable Long id){
+
+        System.out.println("The API was successfully called.");
+
+        String result = jobService.deleteJob(id);
+
+        return ResponseEntity.ok(result);
     }
 
 //    public ResponseEntity<String> deleteJob(@PathVariable Long id) {
