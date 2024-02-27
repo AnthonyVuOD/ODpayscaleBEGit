@@ -10,7 +10,8 @@ import java.util.Optional;
 
 @Entity
 @Table(name = "jobs")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name ="job_type", discriminatorType = DiscriminatorType.STRING)
 @Data
 @Getter
 @Setter

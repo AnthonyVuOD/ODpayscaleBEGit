@@ -17,22 +17,22 @@ import java.util.stream.Collectors;
 
 @Service
 public class JobService {
-//    @Autowired
-    private final JobRepository jobRepository;
-//    @Autowired
-    private final W2JobRepository w2JobRepository;
-//    @Autowired
-    private final ContractorJobRepository contractorJobRepository;
-
     @Autowired
-    public JobService(JobRepository jobRepository,
-                      W2JobRepository w2JobRepository,
-                      ContractorJobRepository contractorJobRepository){
-        this.jobRepository=jobRepository;
-        this.w2JobRepository=w2JobRepository;
-        this.contractorJobRepository=contractorJobRepository;
+    private JobRepository jobRepository;
+//    @Autowired
+//    private final W2JobRepository w2JobRepository;
+////    @Autowired
+//    private final ContractorJobRepository contractorJobRepository;
 
-    }
+//    @Autowired
+//    public JobService(JobRepository jobRepository,
+//                      W2JobRepository w2JobRepository,
+//                      ContractorJobRepository contractorJobRepository){
+//        this.jobRepository=jobRepository;
+//        this.w2JobRepository=w2JobRepository;
+//        this.contractorJobRepository=contractorJobRepository;
+//
+//    }
 
     public List<Job> allJobs(){
         return jobRepository.findAll();
@@ -40,12 +40,9 @@ public class JobService {
 
 
     public String deleteJob(Long jobId){
-        System.out.println("The service was successfully accessed.");
+        System.out.println("The service was successfully accessed. Job: " + jobId);
 
         try {
-            // Delete the ContractorJob
-            contractorJobRepository.deleteById(jobId);
-            // Also delete the associated Job
             jobRepository.deleteById(jobId);
 
             System.out.println("Success?");
@@ -58,26 +55,6 @@ public class JobService {
             return "Error deleting ContractorJob with ID " + jobId + ": " + e.getMessage();
         }
     }
-
-//    public boolean deleteJob(Long jobId) {
-//        // Check if the job exists before attempting to delete
-////        if (jobRepository.existsById(jobId)) {
-////            jobRepository.deleteById(jobId);
-////            return true;  // Job deleted successfully
-////            //but not being updated in MySQL
-////        } else {
-////            return false; // Job not found
-////        }
-//
-//        if (jobRepository.existsById(jobId)) {
-//            jobRepository.deleteById(jobId);
-//            return true;  // Job deleted successfully
-//            //but not being updated in MySQL
-//        } else {
-//            return false; // Job not found
-//        }
-//
-//    }
 
     //Get Jobs by OptometristId
     public List<Job> jobsByOptometristId(String optometristId){

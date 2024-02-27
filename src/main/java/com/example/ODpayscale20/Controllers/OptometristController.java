@@ -15,8 +15,6 @@ import java.util.Optional;
 import java.util.Set;
 
 @CrossOrigin(origins = "http://localhost:3000/")
-//        ,allowedMethods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
-
 @RestController
 @RequestMapping("/api/v1/optometrists")
 public class OptometristController {
