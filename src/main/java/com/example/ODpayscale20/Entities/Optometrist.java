@@ -22,9 +22,6 @@ public class Optometrist {
     @Column(name = "optometrist_id")
     private String id;
 
-//    @Column(name = "username")
-//    private String userName;
-
     @Column(name = "year_graduated")
     private Integer yearGraduated;
 
@@ -34,17 +31,17 @@ public class Optometrist {
     @Column(name = "initial_debt")
     private Integer initialDebt;
 
-    //    private Genders gender;
     @Column(name = "gender")
     private String gender;
-    //    private Races race;
+
     @Column(name = "race")
     private String race;
 
-//    @Column(name = "job_ids")
+//  No "jobs column"
     @OneToMany(     mappedBy = "optometrist",
                     cascade = CascadeType.ALL,
-                    fetch =FetchType.EAGER
+                    fetch =FetchType.LAZY
+                                    //Maybe EAGER
     )
     // Prevents recursion
     @JsonIgnore

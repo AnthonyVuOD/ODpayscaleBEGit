@@ -42,18 +42,27 @@ public class JobService {
     public String deleteJob(Long jobId){
         System.out.println("The service was successfully accessed. Job: " + jobId);
 
-        try {
-            jobRepository.deleteById(jobId);
-
-            System.out.println("Success?");
-            return "ContractorJob with ID " + jobId + " deleted successfully.";
-        } catch (EmptyResultDataAccessException e) {
-            // Handle case where the job with the given ID does not exist
-            return "ContractorJob with ID " + jobId + " not found.";
-        } catch (Exception e) {
-            // Handle other exceptions, such as database errors
-            return "Error deleting ContractorJob with ID " + jobId + ": " + e.getMessage();
+        Job job = jobRepository.findById(jobId).orElse(null);
+        if(job!=null){
+            jobRepository.delete(job);
+            return "Success";
+        } else {
+            return "Job not found.";
         }
+
+
+//        try {
+//            jobRepository.deleteById(jobId);
+//
+//            System.out.println("Success?");
+//            return "ContractorJob with ID " + jobId + " deleted successfully.";
+//        } catch (EmptyResultDataAccessException e) {
+//            // Handle case where the job with the given ID does not exist
+//            return "ContractorJob with ID " + jobId + " not found.";
+//        } catch (Exception e) {
+//            // Handle other exceptions, such as database errors
+//            return "Error deleting ContractorJob with ID " + jobId + ": " + e.getMessage();
+//        }
     }
 
     //Get Jobs by OptometristId
