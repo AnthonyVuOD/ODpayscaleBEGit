@@ -18,6 +18,7 @@ public class W2JobRequest {
     private String setting;
     private Double paidDaysOff;
     private Integer healthInsuranceValue;
+    private Integer retirementBenefitsValue;
     private Integer otherBenefitsValue;
     private String comments;
     private Double annualSalaryAndBonus;

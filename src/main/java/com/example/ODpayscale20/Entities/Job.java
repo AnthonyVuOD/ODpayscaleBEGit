@@ -55,8 +55,8 @@ public class Job {
     @Column(name = "health_insurance_value")
     private Integer healthInsuranceValue;
 
-//    @Column(name = "retirement_benefits_value")
-//    private Integer retirementBenefitsValue;
+    @Column(name = "retirement_benefits_value")
+    private Integer retirementBenefitsValue;
 
     @Column(name = "other_benefits_value")
     private Integer otherBenefitsValue;
@@ -78,7 +78,7 @@ public class Job {
                 String setting,
                 Double paidDaysOff,
                 Integer healthInsuranceValue,
-//                Integer retirementBenefitsValue
+                Integer retirementBenefitsValue,
                 Integer otherBenefitsValue,
                 String comments
         ){
@@ -90,7 +90,7 @@ public class Job {
         this.setting=setting;
         this.paidDaysOff=paidDaysOff;
         this.healthInsuranceValue=healthInsuranceValue;
-//        this.retirementBenefitsValue
+        this.retirementBenefitsValue=retirementBenefitsValue;
         this.otherBenefitsValue=otherBenefitsValue;
         this.comments=comments;
         this.totalBenefitsValue = healthInsuranceValue+otherBenefitsValue;

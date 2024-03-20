@@ -46,6 +46,7 @@ public class ContractorJobController {
         String setting = contractorJob.getSetting();
         Double paidDaysOff = contractorJob.getPaidDaysOff();
         Integer healthInsuranceValue = contractorJob.getHealthInsuranceValue();
+        Integer retirementBenefitsValue = contractorJob.getRetirementBenefitsValue();
         Integer otherBenefitsValue = contractorJob.getOtherBenefitsValue();
         String comments = contractorJob.getComments();
         Double dailyRateAndBonus = contractorJob.getDailyRateAndBonus();
@@ -61,6 +62,7 @@ public class ContractorJobController {
                                                                 setting,
                                                                 paidDaysOff,
                                                                 healthInsuranceValue,
+                                                                retirementBenefitsValue,
                                                                 otherBenefitsValue,
                                                                 comments,
                                                                 dailyRateAndBonus,

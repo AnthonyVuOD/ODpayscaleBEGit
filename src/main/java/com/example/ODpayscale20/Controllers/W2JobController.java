@@ -44,6 +44,7 @@ public class W2JobController {
         String setting = w2job.getSetting();
         Double paidDaysOff = w2job.getPaidDaysOff();
         Integer healthInsuranceValue = w2job.getHealthInsuranceValue();
+        Integer retirementBenefitsValue = w2job.getRetirementBenefitsValue();
         Integer otherBenefitsValue = w2job.getOtherBenefitsValue();
         String comments= w2job.getComments();
         Double annualSalaryAndBonus = w2job.getAnnualSalaryAndBonus();
@@ -61,6 +62,7 @@ public class W2JobController {
                                                                     setting,
                                                                     paidDaysOff,
                                                                     healthInsuranceValue,
+                                                                    retirementBenefitsValue,
                                                                     otherBenefitsValue,
                                                                     comments,
                                                                     annualSalaryAndBonus,

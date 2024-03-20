@@ -23,14 +23,22 @@ import java.util.Optional;
 public class ContractorJob extends Job{
     @Column(name = "daily_rate_and_bonus")
     private Double dailyRateAndBonus;
+
     @Column(name = "daily_hours")
     private Double dailyHours;
+
     @Column(name = "patients_per_day")
     private Double patientsPerDay;
+
+    @Column(name = "patients_per_hour")
+    private Double patientsPerHour;
+
     @Column(name = "comp_per_patient")
     private Double compPerPatient;
+
     @Column(name = "comp_per_hour")
     private Double compPerHour;
+
     @Column(name = "normalized_annual_comp")
     private Double normalizedAnnualComp;
 
@@ -48,6 +56,7 @@ public class ContractorJob extends Job{
                             String setting,
                             Double paidDaysOff,
                             Integer healthInsuranceValue,
+                            Integer retirementBenefitsValue,
                             Integer otherBenefitsValue,
                             String comments,
                             //
@@ -63,6 +72,7 @@ public class ContractorJob extends Job{
                 setting,
                 paidDaysOff,
                 healthInsuranceValue,
+                retirementBenefitsValue,
                 otherBenefitsValue,
                 comments
                 );
@@ -70,9 +80,11 @@ public class ContractorJob extends Job{
         this.dailyHours=dailyHours;
         this.patientsPerDay=patientsPerDay;
 
+        this.patientsPerHour=patientsPerDay/dailyHours;
         this.annualizedDailyRateAndBonus=dailyRateAndBonus*255;
         this.paidDaysOffValue=paidDaysOff*dailyRateAndBonus;
-        this.normalizedAnnualComp= (dailyRateAndBonus*255 +healthInsuranceValue+otherBenefitsValue+paidDaysOffValue);
+//        this.normalizedAnnualComp= (dailyRateAndBonus*255 +healthInsuranceValue+otherBenefitsValue+paidDaysOffValue);
+        this.normalizedAnnualComp= (dailyRateAndBonus*255 +retirementBenefitsValue+ healthInsuranceValue+otherBenefitsValue+paidDaysOffValue);
         this.compPerPatient = normalizedAnnualComp/(patientsPerDay*255);
         this.compPerHour = normalizedAnnualComp/(dailyHours*255);
     }
